@@ -1,0 +1,18 @@
+{
+	"name": "chiron",
+	"module": "src/index.ts",
+	"type": "module",
+	"devDependencies": {
+		"@biomejs/biome": "^1.7.0",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@xmcl/modrinth": "^2.3.1",
+		"discord.js": "^14.14.1",
+		"pino": "^8.20.0",
+		"pino-pretty": "^11.0.0"
+	}
+}
