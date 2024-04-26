@@ -8,9 +8,9 @@ export async function startService(service: Service) {
 	log.info(`Registering service "${service.title ?? "no title"}"`);
 
 	const client = createClient(service.webhook.url, service.webhook.threadId);
-	const separateFacets = processFacets(service.search);
+	const facets = processFacets(service.search);
 
-	await createChecker(client, separateFacets, {
+	await createChecker(client, facets, {
 		"title": service.title,
 		"types": service.search.projectTypes,
 		"index": service.sort,

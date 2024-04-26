@@ -1,40 +1,50 @@
-import type { Facets, ServiceFacets } from "../types/Facets";
+import type { ServiceFacets } from "../types/Facets";
 import { log } from "../log";
 import { toSnakeCase } from "../util/toSnakeCase";
+
+function formatPair(key: string, value: string) {
+	return `"${key}:${value}"`;
+}
 
 export function processFacets(serviceFacets: ServiceFacets) {
 	log.info("Processing facets...");
 	log.debug(JSON.stringify(serviceFacets));
 
-	const facets: Facets = { ...serviceFacets };
-	const projectTypes = serviceFacets.projectTypes;
-
-	facets.categories ??= [];
+	serviceFacets.categories ??= [];
 	if (serviceFacets.loaders !== "*") {
-		facets.categories.push(...serviceFacets.loaders);
+		serviceFacets.categories.push(...serviceFacets.loaders);
 	}
 
-	delete facets.loaders;
-	delete facets.projectTypes;
+	delete serviceFacets.loaders;
 
-	const serializedFacets: string[] = [];
-	for (const projectType of projectTypes) {
-		facets.projectType = projectType;
-
-		const serialized: string[] = [];
-		for (const [key, value] of Object.entries(facets)) {
-			if (value === "*" || value.length === 0) {
-				continue;
-			}
-
-			serialized.push(`["${toSnakeCase(key)}:${value}"]`);
+	const serialized: string[] = [];
+	for (const [key, value] of Object.entries(serviceFacets)) {
+		if (value === "*" || value.length === 0) {
+			continue;
 		}
 
-		serializedFacets.push(`[${serialized.join(",")}]`);
+		const serializedKey = toSnakeCase(key);
+		let pair: string;
+
+		if (Array.isArray(value)) {
+			const or: string[] = [];
+
+			for (const option of value) {
+				or.push(formatPair(serializedKey, option));
+			}
+
+			pair = or.join(",");
+		} else {
+			pair = formatPair(key, value);
+		}
+
+		serialized.push(`[${pair}]`);
 	}
 
+	const serializedFacets = `[${serialized.join(",")}]`;
+
 	log.info("Finished facet serialization!");
-	log.debug(JSON.stringify(serializedFacets));
+	log.debug(serializedFacets);
 
 	return serializedFacets;
 }
