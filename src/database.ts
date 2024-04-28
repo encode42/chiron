@@ -7,11 +7,11 @@ const database = new Database("db.sqlite", {
 database.exec("PRAGMA journal_mode = WAL;");
 database
 	.query(`
-	CREATE TABLE IF NOT EXISTS known_projects (
-		id        CHARACTER(8) PRIMARY KEY,
-		last_seen DATETIME     DEFAULT CURRENT_TIMESTAMP
-	);
-`)
+		CREATE TABLE IF NOT EXISTS known_projects (
+			id        CHARACTER(8) PRIMARY KEY,
+			last_seen DATETIME     DEFAULT CURRENT_TIMESTAMP
+		);
+	`)
 	.run();
 
 const query = {
