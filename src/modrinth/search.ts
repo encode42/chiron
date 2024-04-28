@@ -1,5 +1,6 @@
-import { ModerinthApiError, type SearchResult, type SearchResultHit } from "@xmcl/modrinth";
+import type { SearchResult, SearchResultHit } from "@xmcl/modrinth";
 import type { SearchIndex } from "../types/SearchIndex";
+import { ModerinthApiError } from "@xmcl/modrinth";
 import { client } from "./client";
 import { log } from "../log";
 
@@ -8,14 +9,14 @@ type CorrectHit = SearchResultHit & {
 };
 
 export async function search(facets: string, index: SearchIndex = "newest") {
-	log.info("Searching Modrinth for new projects...");
+	log.debug("Searching Modrinth for new projects...");
 	log.debug(facets);
 
 	let response: SearchResult;
 	try {
 		response = await client.searchProjects({
-			"index": "newest",
-			"facets": facets
+			index,
+			facets
 		});
 	} catch (error) {
 		if (error instanceof ModerinthApiError && error.status >= 500 && error.status < 600) {
@@ -28,6 +29,6 @@ export async function search(facets: string, index: SearchIndex = "newest") {
 		throw error;
 	}
 
-	log.info("Finished searching!");
+	log.debug("Finished searching!");
 	return response.hits as CorrectHit[];
 }
