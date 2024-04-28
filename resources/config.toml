@@ -6,7 +6,7 @@
 ### The below is a basic real-world example for Forge 1.20.1 mods.
 [[service]]
 [service.webhook]
-webhook = "https://discord.com/api/webhooks/.../..."
+url = "https://discord.com/api/webhooks/.../..."
 
 [service.search]
 projectTypes = ["mod"]
