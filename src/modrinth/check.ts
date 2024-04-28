@@ -29,7 +29,11 @@ export async function check(facets: string, index?: SearchIndex) {
 		});
 	}
 
-	log.info(newProjects.length === 0 ? "No new projects found." : `Found and processed ${newProjects.length} new projects!`);
+	if (newProjects.length > 0) {
+		log.info(`Found and processed ${newProjects.length} new projects!`);
+	} else {
+		log.debug("No new projects found.");
+	}
 
 	return newProjects;
 }
