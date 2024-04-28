@@ -1,5 +1,5 @@
-import type { ServiceFacets } from "./Facets";
 import type { Snowflake } from "discord.js";
+import type { ServiceFacets } from "./Facets";
 import type { SearchIndex } from "./SearchIndex";
 
 export interface Service {

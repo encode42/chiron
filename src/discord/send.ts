@@ -1,5 +1,6 @@
-import { EmbedBuilder, type EmbedData } from "discord.js";
+import type { EmbedData } from "discord.js";
 import type { Client } from "./client";
+import { EmbedBuilder } from "discord.js";
 
 const defaultThumbnail = "https://avatars.githubusercontent.com/u/67560307?v=4";
 
