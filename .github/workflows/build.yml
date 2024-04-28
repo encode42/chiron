@@ -20,6 +20,7 @@ jobs:
 
     - name: Build
       run: |
+        bun install
         bun build.ts
 
     - name: Upload artifacts
