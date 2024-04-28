@@ -1,26 +1,23 @@
 import type { NewProject } from "../types/NewProject";
 import type { SearchIndex } from "../types/SearchIndex";
-import { knownProjects } from "../database/knownProjects";
+import { getProject, setProject } from "../database";
 import { search } from "./search";
 import { log } from "../log";
 
 export async function check(facets: string, index?: SearchIndex) {
 	const hits = await search(facets, index);
-	const now = Date.now();
 
 	const newProjects: NewProject[] = [];
 	for (const hit of hits) {
 		log.debug(`Found "${hit.title}"`);
 
-		const knownProject = knownProjects.get(hit.project_id);
+		const knownProject = getProject(hit.project_id);
 		if (knownProject) {
 			log.debug("...which has already been found!");
 			continue;
 		}
 
-		await knownProjects.set(hit.project_id, {
-			"lastUpdate": now
-		});
+		setProject(hit.project_id);
 
 		newProjects.push({
 			"type": hit.project_type,
