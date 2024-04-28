@@ -1,18 +1,24 @@
 {
-	"name": "chiron",
-	"module": "src/index.ts",
-	"type": "module",
-	"devDependencies": {
-		"@biomejs/biome": "^1.7.0",
-		"@types/bun": "latest"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0"
-	},
-	"dependencies": {
-		"@xmcl/modrinth": "^2.3.1",
-		"discord.js": "^14.14.1",
-		"pino": "^9.0.0",
-		"pino-pretty": "^11.0.0"
-	}
+  "name": "chiron",
+  "description": "Modrinth link aggregator for Discord.",
+  "version": "0.0.1",
+  "author": {
+    "name": "encode42",
+    "email": "me@encode42.dev"
+  },
+  "type": "module",
+  "module": "src/index.ts",
+  "devDependencies": {
+    "@biomejs/biome": "^1.7.0",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@xmcl/modrinth": "^2.3.1",
+    "discord.js": "^14.14.1",
+    "pino": "^9.0.0",
+    "pino-pretty": "^11.0.0"
+  }
 }

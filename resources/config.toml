@@ -34,4 +34,3 @@ versions = "*"
 ### Various other global configuration options
 [extra]
 email = "me@encode42.dev" # E-mail used to identify with Modrinth. Please change!
-verbose = false # Whether to show debug logs
