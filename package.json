@@ -12,7 +12,7 @@
 	"dependencies": {
 		"@xmcl/modrinth": "^2.3.1",
 		"discord.js": "^14.14.1",
-		"pino": "^8.20.0",
+		"pino": "^9.0.0",
 		"pino-pretty": "^11.0.0"
 	}
 }
