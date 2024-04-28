@@ -1,8 +1,8 @@
 import { pino } from "pino";
-import { extras } from "../data/config";
+import { config } from "./config";
 
 export const log = pino({
-	"level": extras.verbose ? "debug" : "info",
+	"level": config.extra.verbose ? "debug" : "info",
 	"transport": {
 		"target": "pino-pretty",
 		"options": {

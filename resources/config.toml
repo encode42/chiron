@@ -1,0 +1,37 @@
+### Services define what to search for.
+#
+# For example, a service could check for new mods created for Fabric 1.20.4.
+# Another service could observe whether a new mod has appeared in the top search results.
+#
+### The below is a basic real-world example for Forge 1.20.1 mods.
+[[service]]
+[service.webhook]
+webhook = "https://discord.com/api/webhooks/.../..."
+
+[service.search]
+projectTypes = ["mod"]
+loaders = ["forge", "neoforge"]
+versions = ["1.20.1"]
+
+### This shows all available options and their meanings
+[[service]]
+title = "Resource Packs" # Shown in the log and embed footer
+sort = "updated" # The method used to search Modrinth 
+interval = 120 # How often to check for new projects
+
+# https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+[service.webhook]
+url = "https://discord.com/api/webhooks/.../..."
+threadId = "..." # To send in a thread or forum post...
+
+# All facets are available!
+# https://docs.modrinth.com/#tag/projects/operation/searchProjects
+[service.search]
+projectTypes = ["resourcepack"]
+loaders = "*"
+versions = "*"
+
+### Various other global configuration options
+[extra]
+email = "me@encode42.dev" # E-mail used to identify with Modrinth. Please change!
+verbose = false # Whether to show debug logs
