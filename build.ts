@@ -42,8 +42,6 @@ for (const [target, value] of Object.entries(targets)) {
 	await build(options);
 
 	if (value.arm) {
-		log.info("Also compiling for ARM...");
-
 		await build({
 			...options,
 			"arch": "arm64"

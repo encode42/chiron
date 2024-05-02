@@ -15,7 +15,7 @@ database
 	.run();
 
 const query = {
-	"select": database.query("SELECT $id FROM known_projects;"),
+	"select": database.query("SELECT id, last_seen FROM known_projects WHERE id = $id;"),
 	"update": database.query("UPDATE known_projects SET last_seen = datetime('now') WHERE ID = $id;"),
 	"create": database.query(`
 		INSERT INTO known_projects (id)
